@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2016 Roku Corp.  All Rights Reserved. -->
-<component name="SimpleVideoScene" extends="Scene">
+<component name="GL1Scene" extends="Scene">
   <children>
 
     <Label id="Title" font="font:LargeBoldSystemFont" translation="[750, 250]" width="850" />
@@ -12,13 +12,13 @@
       height="300"
       width="1300"
       font="font:MediumBoldSystemFont"
-      text="PUT DETAILS TEXT HERE"
+      text="Gotham Lane 1"
       wrap="true"
       translation="[300,600]" />
 
     <Overhang
       showClock="true"
-      title="Simple-Video-Player" />
+      title="Gotham Lane 1" />
 
     <Video
       id="Video"
@@ -36,5 +36,5 @@
     <Exiter id="Exiter"/>
   </children>
 
-  <script type="text/brightscript" uri="pkg:/components/SimpleVideoScene.brs"/>
+  <script type="text/brightscript" uri="pkg:/components/GL1Scene.brs"/>
 </component>

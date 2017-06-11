@@ -29,18 +29,7 @@ end sub
 
 'Set your information here
 sub setContent()
-
   'Change the image
-  'm.Image.uri="pkg:/images/DanGilbert.jpg"
-  'ContentNode = CreateObject("roSGNode", "ContentNode")
-  'ContentNode.streamFormat = "mp4"
-  'ContentNode.url = "http://video.ted.com/talks/podcast/DanGilbert_2004_480.mp4"
-  'ContentNode.ShortDescriptionLine1 = "Dan Gilbert asks, Why are we happy?"
-  'ContentNode.Description = "Harvard psychologist Dan Gilbert says our beliefs about what will make us happy are often wrong -- a premise he supports with intriguing research, and explains in his accessible and unexpectedly funny book, Stumbling on Happiness."
-  'ContentNode.StarRating = 80
-  'ContentNode.Length = 1280
-  'ContentNode.Title = "Dan Gilbert asks, Why are we happy?"
-
   m.Image.uri="pkg:/images/125th.jpg"
   ContentNode = CreateObject("roSGNode", "ContentNode")
   ContentNode.streamFormat = "mp4"
@@ -51,35 +40,19 @@ sub setContent()
   ContentNode.Length = 1972
   ContentNode.Title = "1 Train North of 125th Street"
   ContentNode.subtitleConfig = {Trackname: "pkg:/source/CraigVenter.srt" }
-
-  'm.Image.uri="pkg:/images/BigBuckBunny.jpg"
-  'ContentNode = CreateObject("roSGNode", "ContentNode")
-  'ContentNode.streamFormat = "mp4"
-  'ContentNode.url = "http://video.ted.com/talks/podcast/CraigVenter_2008_480.mp4"
-  'ContentNode.ShortDescriptionLine1 = "Big Buck Bunny"
-  'ContentNode.Description = "Big Buck Bunny is being served using a Wowza server running on Amazon EC2 cloud services. The video is transported via HLS HTTP Live Streaming. A team of small artists from the Blender community produced this open source content..."
-  'ContentNode.StarRating = 80
-  'ContentNode.Length = 600
-  'ContentNode.Title = "Big Buck Bunny"
-
   m.Video.content = ContentNode
-
   'Change the buttons
   Buttons = ["Play","Exit"]
   m.ButtonGroup.buttons = Buttons
 
   'Change the details
-  'm.Title.text = "Dan Gilbert asks, Why are we happy?"
-  'm.Details.text = "Harvard psychologist Dan Gilbert says our beliefs about what will make us happy are often wrong -- a premise he supports with intriguing research, and explains in his accessible and unexpectedly funny book, Stumbling on Happiness."
-
   m.Title.text = "Gotham Lane"
   m.Details.text =  "1 Train North of 125th Street"
-
 end sub
 
 ' Called when a key on the remote is pressed
 function onKeyEvent(key as String, press as Boolean) as Boolean
-  print "in SimpleVideoScene.xml onKeyEvent ";key;" "; press
+  print "in GL1Scene.xml onKeyEvent ";key;" "; press
   if press then
     if key = "back"
       print "------ [back pressed] ------"
