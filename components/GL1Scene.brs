@@ -1,8 +1,6 @@
 ' ********** Copyright 2016 Roku Corp.  All Rights Reserved. **********
 
-' 1st function that runs for the scene component on channel startup
 sub init()
-  'To see print statements/debug info, telnet on port 8089
   m.Image       = m.top.findNode("Image")
   m.ButtonGroup = m.top.findNode("ButtonGroup")
   m.Details     = m.top.findNode("Details")
@@ -13,23 +11,34 @@ sub init()
   setContent()
   m.ButtonGroup.setFocus(true)
   m.ButtonGroup.observeField("buttonSelected","onButtonSelected")
+
+  'm.readContentTask = createObject("roSGNode", "ContentReader")
+  'm.readContentTask.observeField("content", "getContent")
+  'm.readContentTask.contenturi = "http://www.sdktestinglab.com/Tutorial/content/categoriescontent.xml"
+  'm.readContentTask.control = "RUN"
+end sub
+
+sub getContent()
+  m.categoriespanel = m.top.panelSet.createChild("GL1ListPanel")
+  m.categoriespanel.list.content = m.readContentTask.content
+  m.categoriespanel.setFocus(true)
 end sub
 
 sub onButtonSelected()
-  'Ok'
   if m.ButtonGroup.buttonSelected = 0
     m.Video.visible = "true"
     m.Video.control = "play"
     m.Video.setFocus(true)
-  'Exit button pressed'
+  else if m.ButtonGroup.buttonSelected = 1
+    m.Video.visible = "false"
+    m.Video.control = "stop"
+    m.Video.setFocus(false)
   else
     m.Exiter.control = "RUN"
   end if
 end sub
 
-'Set your information here
 sub setContent()
-  'Change the image
   m.Image.uri="pkg:/images/125th.jpg"
   ContentNode = CreateObject("roSGNode", "ContentNode")
   ContentNode.streamFormat = "mp4"
@@ -39,20 +48,14 @@ sub setContent()
   ContentNode.StarRating = 80
   ContentNode.Length = 1972
   ContentNode.Title = "1 Train North of 125th Street"
-  ContentNode.subtitleConfig = {Trackname: "pkg:/source/CraigVenter.srt" }
   m.Video.content = ContentNode
-  'Change the buttons
-  Buttons = ["Play","Exit"]
+  Buttons = ["Play Video","Show List", "Exit"]
   m.ButtonGroup.buttons = Buttons
-
-  'Change the details
   m.Title.text = "Gotham Lane"
   m.Details.text =  "1 Train North of 125th Street"
 end sub
 
-' Called when a key on the remote is pressed
 function onKeyEvent(key as String, press as Boolean) as Boolean
-  print "in GL1Scene.xml onKeyEvent ";key;" "; press
   if press then
     if key = "back"
       print "------ [back pressed] ------"
@@ -69,7 +72,6 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
         return false
       end if
     else if key = "OK"
-      print "------- [ok pressed] -------"
       if m.Warning.visible
         m.Warning.visible = false
         m.ButtonGroup.setFocus(true)
