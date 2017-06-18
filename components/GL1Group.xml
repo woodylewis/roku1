@@ -1,0 +1,21 @@
+<?xml version = "1.0" encoding = "utf-8" ?>
+<!--********** Copyright 2016 Roku Corp.  All Rights Reserved. **********-->
+<component name="GL1Group" extends="Group">
+  <children><Label
+    id="testLabel"
+    height="44"
+    width="0"
+    font="font:MediumBoldSystemFont"
+    text = "Application Development Made Easy!" horizAlign = "left"
+    vertAlign = "center"
+    translation="[318,8]" />
+  </children>
+
+  <script type = "text/brightscript" >
+    <![CDATA[
+        sub init()
+            m.top.setFocus(true)
+        end sub
+    ]]>
+  </script>
+</component>

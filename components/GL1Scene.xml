@@ -16,6 +16,15 @@
       wrap="true"
       translation="[300,600]" />
 
+      <Label
+      id="Copy"
+      height="300"
+      width="1300"
+      font="font:MediumBoldSystemFont"
+      text="TEST COPY"
+      wrap="true"
+      translation="[300,800]" />
+
     <Overhang
       showClock="true"
       title="Gotham Lane 1" />

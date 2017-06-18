@@ -8,20 +8,27 @@ sub init()
   m.Video       = m.top.findNode("Video")
   m.Warning     = m.top.findNode("WarningDialog")
   m.Exiter      = m.top.findNode("Exiter")
+  m.Copy        = m.top.findNode("Copy")
+  m.Copy.visible = "false"
   setContent()
   m.ButtonGroup.setFocus(true)
   m.ButtonGroup.observeField("buttonSelected","onButtonSelected")
+end sub
 
-  'm.readContentTask = createObject("roSGNode", "ContentReader")
-  'm.readContentTask.observeField("content", "getContent")
-  'm.readContentTask.contenturi = "http://www.sdktestinglab.com/Tutorial/content/categoriescontent.xml"
-  'm.readContentTask.control = "RUN"
+sub readContentURL()
+  'ContentNode = createObject("roSGNode", "ContentReader")
+  m.readContentTask = createObject("roSGNode", "ContentReader")
+  m.readContentTask.observeField("content", "getContent")
+  m.readContentTask.contenturi = "http://www.wlsllc.com"
+  m.readContentTask.control = "RUN"
 end sub
 
 sub getContent()
-  m.categoriespanel = m.top.panelSet.createChild("GL1ListPanel")
-  m.categoriespanel.list.content = m.readContentTask.content
-  m.categoriespanel.setFocus(true)
+  m.Copy.visible = "true"
+  'm.categoriespanel = m.top.panelSet.createChild("GL1Group")
+  'm.categoriespanel.setFocus(true) 
+  'm.categoriespanel.text = m.readContentTask.content
+
 end sub
 
 sub onButtonSelected()
@@ -33,6 +40,9 @@ sub onButtonSelected()
     m.Video.visible = "false"
     m.Video.control = "stop"
     m.Video.setFocus(false)
+    getContent()
+    m.ButtonGroup.setFocus(true)
+    m.ButtonGroup.observeField("buttonSelected","onButtonSelected")
   else
     m.Exiter.control = "RUN"
   end if
