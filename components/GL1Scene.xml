@@ -23,6 +23,7 @@
       font="font:MediumBoldSystemFont"
       text="TEST COPY"
       wrap="true"
+      visible="false"
       translation="[300,800]" />
 
     <Overhang
